@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fitness Hub | Premium Local Gym</title>
+    <meta name="description" content="Transform Your Body, Build Your Confidence at The Fitness Hub. Premium equipment, expert trainers, and affordable plans. Join the best local fitness club today.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-login-btn {
+            font-size: 0.75rem;
+            color: #888;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: 1px solid #333;
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        .admin-login-btn:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .admin-login-btn {
+                margin-left: 0;
+                margin-top: 10px;
+                font-size: 1rem;
+                padding: 10px;
+                border-color: #555;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/1234567890" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navbar -->
+    <header id="header" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                FITNESS<span>HUB</span>
+            </a>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#memberships" class="nav-link">Plans</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="admin/login.html" class="admin-login-btn">Admin Login</a>
+                <a href="#memberships" class="btn btn-primary nav-cta">Join Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content fade-in-up">
+                <h1 class="hero-title">TRANSFORM YOUR BODY,<br>BUILD YOUR CONFIDENCE</h1>
+                <p class="hero-subtitle">Your ultimate local fitness destination for real results. Expert trainers, modern equipment, and a motivating community.</p>
+                <div class="hero-actions">
+                    <a href="#memberships" class="btn btn-primary btn-large">Join Now</a>
+                    <a href="#contact" class="btn btn-outline btn-large">Book Free Trial</a>
+                </div>
+            </div>
+            
+            <div class="hero-trust-bar">
+                <div class="trust-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Modern Equipment</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-certificate"></i>
+                    <span>Certified Trainers</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Affordable Plans</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-users"></i>
+                    <span>Friendly Environment</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container about-grid">
+                <div class="about-image-wrapper reveal-left">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop" alt="Gym Workout Environment" class="about-img">
+                    <div class="experience-badge">
+                        <span class="exp-years">10+</span>
+                        <span class="exp-text">Years of<br>Excellence</span>
+                    </div>
+                </div>
+                <div class="about-text reveal-right">
+                    <h2 class="section-title">WE ARE MORE THAN JUST A GYM</h2>
+                    <p class="section-desc">At Fitness Hub, we are dedicated to helping our local community achieve their fitness goals. Whether your objective is weight loss, muscle gain, strength building, or a complete body transformation, we provide the ultimate environment to succeed.</p>
+                    <p class="section-desc">Stop making excuses and start making progress. We offer a clean, premium, and welcoming space designed for real people looking for real results.</p>
+                    <ul class="about-list">
+                        <li><i class="fas fa-check-circle text-red"></i> Personalized workout guidance</li>
+                        <li><i class="fas fa-check-circle text-red"></i> High-intensity & strength zones</li>
+                        <li><i class="fas fa-check-circle text-red"></i> Diet & nutritional support</li>
+                    </ul>
+                    <a href="#memberships" class="btn btn-primary mt-4">Explore Plans</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section id="features" class="section bg-dark features-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">WHY CHOOSE US</h2>
+                    <p class="section-subtitle">Everything you need to crush your goals in one place.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card reveal-up" style="transition-delay: 0.1s">
+                        <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Expert Trainers</h3>
+                        <p>Certified professionals to guide you safely and effectively.</p>
+                    </div>
+                    <div class="feature-card reveal-up" style="transition-delay: 0.2s">
+                        <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Modern Machines</h3>
+                        <p>State-of-the-art bio-mechanically efficient equipment.</p>
+                    </div>
+                    <div class="feature-card reveal-up" style="transition-delay: 0.3s">
+                        <div class="feature-icon"><i class="fas fa-pump-soap"></i></div>
+                        <h3>Hygiene & Cleanliness</h3>
+                        <p>Immaculately maintained spaces sanitized daily.</p>
+                    </div>
+                    <div class="feature-card reveal-up" style="transition-delay: 0.4s">
+                        <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+                        <h3>Budget Friendly</h3>
+                        <p>Premium fitness experience without breaking the bank.</p>
+                    </div>
+                    <div class="feature-card reveal-up" style="transition-delay: 0.5s">
+                        <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Result-Focused</h3>
+                        <p>Structured programs tailored to guarantee transformation.</p>
+                    </div>
+                    <div class="feature-card reveal-up" style="transition-delay: 0.6s">
+                        <div class="feature-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Personal Guidance</h3>
+                        <p>We care about your progress and keep you accountable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memberships -->
+        <section id="memberships" class="section memberships-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">MEMBERSHIP PLANS</h2>
+                    <p class="section-subtitle">Choose the perfect plan to start your fitness journey.</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Plan 1 -->
+                    <div class="pricing-card reveal-up">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Monthly Plan</h3>
+                            <div class="plan-price"><span>$</span>49<span>/mo</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Full gym access</li>
+                            <li><i class="fas fa-check"></i> Free locker usage</li>
+                            <li><i class="fas fa-check"></i> 1 Initial assessment</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Personal training</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-block">Join Now</a>
+                    </div>
+                    
+                    <!-- Plan 2 -->
+                    <div class="pricing-card popular reveal-up" style="transition-delay: 0.1s">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">3-Month Plan</h3>
+                            <div class="plan-price"><span>$</span>129<span>/3mo</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Full gym access</li>
+                            <li><i class="fas fa-check"></i> Free locker & shower</li>
+                            <li><i class="fas fa-check"></i> Custom workout plan</li>
+                            <li><i class="fas fa-check"></i> 1 PT Session</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary btn-block">Join Now</a>
+                    </div>
+
+                    <!-- Plan 3 -->
+                    <div class="pricing-card reveal-up" style="transition-delay: 0.2s">
+                        <div class="plan-header">
+                            <h3 class="plan-name">6-Month Plan</h3>
+                            <div class="plan-price"><span>$</span>229<span>/6mo</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> All 3-Month benefits</li>
+                            <li><i class="fas fa-check"></i> 1 Free month extension</li>
+                            <li><i class="fas fa-check"></i> Nutrition consultation</li>
+                            <li><i class="fas fa-check"></i> 3 PT Sessions</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-block">Join Now</a>
+                    </div>
+
+                    <!-- Plan 4 -->
+                    <div class="pricing-card reveal-up" style="transition-delay: 0.3s">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Yearly Plan</h3>
+                            <div class="plan-price"><span>$</span>399<span>/yr</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> All 6-Month benefits</li>
+                            <li><i class="fas fa-check"></i> VIP Member Card</li>
+                            <li><i class="fas fa-check"></i> Unlimited group classes</li>
+                            <li><i class="fas fa-check"></i> 5 PT Sessions</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-block">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Banner -->
+        <section class="promo-banner text-center reveal-up">
+            <div class="container">
+                <h2 class="promo-title">LIMITED SEATS AVAILABLE!</h2>
+                <p class="promo-desc">Get a <strong>FREE TRIAL</strong> today. Don't wait, your body won't change itself.</p>
+                <div class="promo-actions">
+                    <a href="#contact" class="btn btn-light btn-large">Claim Free Trial</a>
+                    <a href="tel:+1234567890" class="btn btn-outline-light btn-large"><i class="fas fa-phone-alt"></i> Call Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transformations -->
+        <section id="transformations" class="section bg-dark transformations-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">REAL PEOPLE, REAL RESULTS</h2>
+                    <p class="section-subtitle">See what commitment and proper guidance can achieve.</p>
+                </div>
+
+                <div class="transform-grid">
+                    <div class="transform-card reveal-up">
+                        <div class="transform-images">
+                            <div class="img-container before">
+                                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=600&auto=format&fit=crop" alt="Before Weight Loss">
+                                <span class="label">Before</span>
+                            </div>
+                            <div class="img-container after">
+                                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop" alt="After Weight Loss">
+                                <span class="label">After</span>
+                            </div>
+                        </div>
+                        <div class="transform-info">
+                            <h4>John D. - Lost 40 lbs</h4>
+                            <p>"The trainers here completely changed my life. I never thought I could look this good at 40!"</p>
+                        </div>
+                    </div>
+                    <div class="transform-card reveal-up" style="transition-delay: 0.2s">
+                        <div class="transform-images">
+                            <div class="img-container before">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Before Muscle Gain">
+                                <span class="label">Before</span>
+                            </div>
+                            <div class="img-container after">
+                                <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?q=80&w=600&auto=format&fit=crop" alt="After Muscle Gain">
+                                <span class="label">After</span>
+                            </div>
+                        </div>
+                        <div class="transform-info">
+                            <h4>Mike T. - Gained 15 lbs Muscle</h4>
+                            <p>"Incredible equipment and environment. The 6-month plan got me jacked!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">OUR FACILITY</h2>
+                    <p class="section-subtitle">A premium environment engineered for performance.</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <a href="#" class="gallery-item reveal-up">
+                        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop" alt="Gym Floor">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                    <a href="#" class="gallery-item reveal-up" style="transition-delay: 0.1s">
+                        <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=800&auto=format&fit=crop" alt="Dumbbell Rack">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                    <a href="#" class="gallery-item reveal-up" style="transition-delay: 0.2s">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" alt="Cardio Area">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                    <a href="#" class="gallery-item reveal-up" style="transition-delay: 0.3s">
+                        <img src="https://images.unsplash.com/photo-1526506114815-4674514ba4c8?q=80&w=800&auto=format&fit=crop" alt="Strength Machines">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                    <a href="#" class="gallery-item reveal-up" style="transition-delay: 0.4s">
+                        <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=800&auto=format&fit=crop" alt="Functional Training">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                    <a href="#" class="gallery-item reveal-up" style="transition-delay: 0.5s">
+                        <img src="https://images.unsplash.com/photo-1603287681836-b174ce5074c2?q=80&w=800&auto=format&fit=crop" alt="Gym Interior">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trainers -->
+        <section id="trainers" class="section bg-dark trainers-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">EXPERT COACHES</h2>
+                    <p class="section-subtitle">Dedicated professionals here to guide you.</p>
+                </div>
+                
+                <div class="trainers-grid">
+                    <div class="trainer-card reveal-up">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" alt="Trainer 1" class="trainer-img">
+                        <div class="trainer-info">
+                            <h4>David Miller</h4>
+                            <p class="specialty">Head Coach & Strength Expert</p>
+                            <div class="trainer-socials">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-card reveal-up" style="transition-delay: 0.2s">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=600&auto=format&fit=crop" alt="Trainer 2" class="trainer-img">
+                        <div class="trainer-info">
+                            <h4>Sarah Jenkins</h4>
+                            <p class="specialty">HIIT & Weight Loss Specialist</p>
+                            <div class="trainer-socials">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-card reveal-up" style="transition-delay: 0.4s">
+                        <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=600&auto=format&fit=crop" alt="Trainer 3" class="trainer-img">
+                        <div class="trainer-info">
+                            <h4>Marcus Chen</h4>
+                            <p class="specialty">Bodybuilding & Nutritionist</p>
+                            <div class="trainer-socials">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="section testimonials-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">WHAT OUR MEMBERS SAY</h2>
+                    <p class="section-subtitle">Join hundreds of satisfied locals.</p>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card reveal-up">
+                        <div class="review-header">
+                            <div class="reviewer-initial">A</div>
+                            <div>
+                                <h5>Alex Smith</h5>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <i class="fab fa-google google-icon"></i>
+                        </div>
+                        <p class="review-text">"Best gym in the area! The equipment is top-notch, always clean, and the trainers are super helpful. Highly recommend the yearly plan."</p>
+                    </div>
+                    <div class="review-card reveal-up" style="transition-delay: 0.1s">
+                        <div class="review-header">
+                            <div class="reviewer-initial">P</div>
+                            <div>
+                                <h5>Priya Patel</h5>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <i class="fab fa-google google-icon"></i>
+                        </div>
+                        <p class="review-text">"I felt intimidated at first, but the staff here made me feel right at home. I've lost 15lbs in two months following their guidance."</p>
+                    </div>
+                    <div class="review-card reveal-up" style="transition-delay: 0.2s">
+                        <div class="review-header">
+                            <div class="reviewer-initial">R</div>
+                            <div>
+                                <h5>Robert K.</h5>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <i class="fab fa-google google-icon"></i>
+                        </div>
+                        <p class="review-text">"Great atmosphere and zero ego. Perfect place to lift heavy and focus on yourself. The vibe is masculine yet respectful."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-dark contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info reveal-left">
+                        <h2 class="section-title text-left">GET IN TOUCH</h2>
+                        <p class="section-desc">Ready to start? Visit us, call us, or send a WhatsApp message. We reply instantly.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>123 Fitness Boulevard, Muscle City, State 12345</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                                <div>
+                                    <h4>WhatsApp</h4>
+                                    <p><a href="https://wa.me/1234567890">+1 (234) 567-890</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <h4>Working Hours</h4>
+                                    <p>Mon - Sat: 5:00 AM - 11:00 PM<br>Sun: 7:00 AM - 1:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex-gap">
+                            <a href="tel:+1234567890" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call Now</a>
+                            <a href="https://wa.me/1234567890" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp"></i> Chat Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-map reveal-right">
+                        <!-- Google Maps Placeholder Embed -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d-74.006!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuNiJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; border-radius: 12px; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    FITNESS<span>HUB</span>
+                </a>
+                <p>Your premium local fitness destination dedicated to real results and an unbeatable gym experience.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#memberships">Memberships</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 The Fitness Hub Gym. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

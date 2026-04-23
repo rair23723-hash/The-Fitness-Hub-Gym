@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients - Fitness Hub Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        .filters { display: flex; gap: 15px; margin-bottom: 25px; align-items: center; }
+        .filters input, .filters select { max-width: 250px; }
+    </style>
+</head>
+<body>
+    <script src="js/auth.js"></script>
+    <script src="js/db.js"></script>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="dashboard.html" class="logo">FITNESS<span>HUB</span> <br><small style="font-size:0.8rem;color:#888;">ADMIN PORTAL</small></a>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="clients.html" class="active"><i class="fas fa-users"></i> Clients</a></li>
+            <li><a href="add-client.html"><i class="fas fa-user-plus"></i> Add Client</a></li>
+            <li style="margin-top:auto"><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>CLIENT MANAGEMENT</h1>
+            <a href="add-client.html" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Client</a>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="search" class="form-control" placeholder="Search by name or phone...">
+            <select id="filter-status" class="form-control">
+                <option value="all">All Statuses</option>
+                <option value="Active">Active</option>
+                <option value="Expiring Soon">Expiring Soon</option>
+                <option value="Expired">Expired</option>
+            </select>
+            <select id="filter-plan" class="form-control">
+                <option value="all">All Plans</option>
+                <option value="1">1 Month</option>
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+            </select>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table id="clients-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Plan</th>
+                        <th>Fee</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows rendered via JS -->
+                </tbody>
+            </table>
+            
+            <div id="empty-state" style="display:none; text-align:center; padding: 40px; color: var(--gray-light);">
+                <i class="fas fa-user-slash" style="font-size: 3rem; margin-bottom: 15px; color: #555;"></i>
+                <p>No clients found matching your criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function renderTable() {
+            const tbody = document.querySelector('#clients-table tbody');
+            const emptyState = document.getElementById('empty-state');
+            tbody.innerHTML = '';
+            
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterPlan = document.getElementById('filter-plan').value;
+            
+            const clients = window.db.getClients();
+            let count = 0;
+            
+            // Sort clients (expiring/expired first could be useful, but for now just by date)
+            clients.reverse().forEach(c => {
+                const status = window.db.getClientStatus(c.expiryDate);
+                
+                // Filtering Logic
+                if (filterStatus !== 'all' && status !== filterStatus) return;
+                if (filterPlan !== 'all' && c.planDuration !== filterPlan) return;
+                if (searchTerm && !c.name.toLowerCase().includes(searchTerm) && !c.phone.includes(searchTerm)) return;
+
+                count++;
+                
+                let badgeClass = 'badge-active';
+                if (status === 'Expiring Soon') badgeClass = 'badge-expiring';
+                if (status === 'Expired') badgeClass = 'badge-expired';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${c.name}</strong></td>
+                    <td>${c.phone}</td>
+                    <td>${c.planDuration} Month(s)</td>
+                    <td>$${c.feeAmount} <br><small style="color:${c.paymentStatus === 'Paid' ? 'var(--success)' : 'var(--warning)'}">${c.paymentStatus}</small></td>
+                    <td>${c.expiryDate}</td>
+                    <td><span class="badge ${badgeClass}">${status}</span></td>
+                    <td>
+                        <button class="action-btn renew" title="Renew Membership" onclick="renewClient('${c.id}')"><i class="fas fa-sync-alt"></i></button>
+                        <button class="action-btn edit" title="Mark as Paid" onclick="markPaid('${c.id}')"><i class="fas fa-check-circle"></i></button>
+                        <button class="action-btn delete" title="Delete Client" onclick="deleteClient('${c.id}')"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            if (count === 0) {
+                emptyState.style.display = 'block';
+                document.getElementById('clients-table').style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                document.getElementById('clients-table').style.display = 'table';
+            }
+        }
+
+        // Event Listeners for Filters
+        document.getElementById('search').addEventListener('input', renderTable);
+        document.getElementById('filter-status').addEventListener('change', renderTable);
+        document.getElementById('filter-plan').addEventListener('change', renderTable);
+
+        // Actions
+        window.deleteClient = (id) => {
+            if(confirm('Warning: Are you sure you want to permanently delete this client record?')) {
+                window.db.deleteClient(id);
+                renderTable();
+            }
+        };
+
+        window.markPaid = (id) => {
+            const c = window.db.getClientById(id);
+            if (c.paymentStatus === 'Paid') {
+                alert('This membership is already marked as paid.');
+                return;
+            }
+            if(confirm(`Mark ${c.name}'s membership fee ($${c.feeAmount}) as Paid?`)) {
+                window.db.updateClient(id, { paymentStatus: 'Paid' });
+                // Future Hook: Send SMS "Payment Received" here
+                renderTable();
+            }
+        };
+
+        window.renewClient = (id) => {
+            const c = window.db.getClientById(id);
+            if(confirm(`RENEWAL: Extend ${c.name}'s membership for another ${c.planDuration} month(s)?\nThis will update the expiry date and set payment status to Pending.`)) {
+                
+                // Determine new join date based on current expiry
+                let baseDate = new Date(c.expiryDate);
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                
+                // If the membership is already expired, start the new cycle from today
+                if (baseDate < today) {
+                    baseDate = today; 
+                }
+                
+                const newJoinStr = baseDate.toISOString().split('T')[0];
+                const newExpiry = window.db.calculateExpiry(newJoinStr, c.planDuration);
+                
+                window.db.updateClient(id, {
+                    joinDate: newJoinStr,
+                    expiryDate: newExpiry,
+                    paymentStatus: 'Pending' // Force pending until manually marked paid
+                });
+                
+                alert('Membership successfully renewed! Expiry date updated. Please collect the fee and mark as Paid.');
+                // Future Hook: Send SMS "Membership Renewed" here
+                renderTable();
+            }
+        };
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', renderTable);
+    </script>
+</body>
+</html>

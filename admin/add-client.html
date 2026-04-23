@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Client - Fitness Hub Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <script src="js/auth.js"></script>
+    <script src="js/db.js"></script>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="dashboard.html" class="logo">FITNESS<span>HUB</span> <br><small style="font-size:0.8rem;color:#888;">ADMIN PORTAL</small></a>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="clients.html"><i class="fas fa-users"></i> Clients</a></li>
+            <li><a href="add-client.html" class="active"><i class="fas fa-user-plus"></i> Add Client</a></li>
+            <li style="margin-top:auto"><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>ADD NEW CLIENT</h1>
+        </div>
+
+        <div style="background: var(--gray-dark); padding: 35px; border-radius: 8px; border: 1px solid #333; max-width: 900px;">
+            <div id="success-msg" class="alert success"><i class="fas fa-check-circle"></i> Client successfully registered! Redirecting...</div>
+            
+            <form id="add-client-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="e.g. John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 000-0000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Joining Date</label>
+                        <input type="date" id="joinDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Membership Duration</label>
+                        <select id="planDuration" class="form-control" required>
+                            <option value="1">1 Month</option>
+                            <option value="3">3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">12 Months (Yearly)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Fee Amount ($)</label>
+                        <input type="number" id="feeAmount" class="form-control" placeholder="e.g. 49" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Status</label>
+                        <select id="paymentStatus" class="form-control">
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Notes (Optional)</label>
+                    <textarea id="notes" class="form-control" rows="3" placeholder="Any health conditions, goals, or locker details..."></textarea>
+                </div>
+
+                <div class="form-group" style="padding-top: 15px; border-top: 1px solid #333;">
+                    <label style="color: var(--warning);"><i class="fas fa-calendar-alt"></i> Auto-Calculated Expiry Date</label>
+                    <input type="text" id="expiryDate" class="form-control" readonly style="background:#111; color: var(--warning); font-weight: bold;">
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Register Client</button>
+                    <button type="button" class="btn btn-outline" onclick="window.history.back()" style="background:transparent; border: 1px solid var(--gray-light); color: var(--gray-light);">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize today's date
+        document.getElementById('joinDate').valueAsDate = new Date();
+
+        // Calculate and display expiry automatically
+        function updateExpiry() {
+            const join = document.getElementById('joinDate').value;
+            const dur = document.getElementById('planDuration').value;
+            if (join && dur) {
+                document.getElementById('expiryDate').value = window.db.calculateExpiry(join, dur);
+            }
+        }
+
+        // Listen for changes
+        document.getElementById('joinDate').addEventListener('change', updateExpiry);
+        document.getElementById('planDuration').addEventListener('change', updateExpiry);
+        
+        // Initial calc
+        updateExpiry();
+
+        // Handle Submission
+        document.getElementById('add-client-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const client = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                joinDate: document.getElementById('joinDate').value,
+                planDuration: document.getElementById('planDuration').value,
+                feeAmount: document.getElementById('feeAmount').value,
+                paymentStatus: document.getElementById('paymentStatus').value,
+                notes: document.getElementById('notes').value,
+                expiryDate: document.getElementById('expiryDate').value,
+                createdOn: new Date().toISOString()
+            };
+
+            // Save to Local Data Layer
+            window.db.addClient(client);
+            
+            // Future Hook: Code to send WhatsApp welcome message goes here
+            
+            document.getElementById('success-msg').style.display = 'block';
+            
+            setTimeout(() => {
+                window.location.href = 'clients.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

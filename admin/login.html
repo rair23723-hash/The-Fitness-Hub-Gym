@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - The Fitness Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body style="display:block;">
+    <script src="js/auth.js"></script>
+    <div class="login-container">
+        <h2>FITNESS<span class="logo-span">HUB</span> ADMIN</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 20px;">Secure Owner Portal</p>
+        
+        <div id="error-msg" class="alert error" style="display:none;">Invalid username or password.</div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Enter owner username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter secure password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content: center;">Secure Login</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
+            Demo Credentials: admin / admin123
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            
+            // Basic Owner Credentials matching logic
+            if (u === 'admin' && p === 'admin123') {
+                sessionStorage.setItem('admin_auth', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
